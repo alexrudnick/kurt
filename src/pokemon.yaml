@@ -1,0 +1,14 @@
+## lolcat topicalization (fronting)
+- state: q
+  lhs: (S let me show you my ?x0)
+  rhs: (S my ?x0 , let me show you them)
+  newstates:
+  - [[1], respell]
+- state: respell
+  lhs: Pokémon
+  rhs: Pokemans
+  weight: 0.9
+- state: respell
+  lhs: ?x0
+  rhs: ?x0
+  weight: 0.1

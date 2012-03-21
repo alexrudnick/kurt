@@ -1,0 +1,49 @@
+# rule 1
+- state: q
+  lhs: (A ?x0 ?x1)
+  rhs: (A (R ?x1 ?x0) (S X))
+  newstates:
+    - [[0, 0], q]
+    - [[0, 1], q]
+  weight: 1.0
+# rule 2
+- state: q
+  lhs: (B ?x0 ?x1)
+  rhs: U
+  weight: 1.0
+# rule 3
+- state: q
+  lhs: (C ?x0 ?x1)
+  rhs: (T ?x0 ?x1)
+  newstates:
+    - [[0], q]
+    - [[1], q]
+  weight: 0.6
+# rule 4
+- state: q
+  lhs: (C ?x0 ?x1)
+  rhs: (T ?x1 ?x0)
+  newstates:
+    - [[0], q]
+    - [[1], q]
+  weight: 0.4
+# rule 5
+- state: q
+  lhs: F
+  rhs: V
+  weight: 0.9
+# rule 6
+- state: q
+  lhs: F
+  rhs: W
+  weight: 0.1
+# rule 7
+- state: q
+  lhs: G
+  rhs: V
+  weight: 0.5
+# rule 8
+- state: q
+  lhs: G
+  rhs: W
+  weight: 0.5

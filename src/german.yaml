@@ -1,0 +1,29 @@
+# handle <pronoun> like <gerund>
+- state: q
+  lhs: (S (NP ?x0) (VP (VB like) ?x1))
+  rhs: (S (NP ?x0) (VP ?x1 (RB gern)))
+  newstates: 
+  - [[0, 0], lookup]
+  - [[1, 0], gerundtotensed]
+
+# handle I am <adj>
+- state: q
+  lhs: (S (NP ?x0) (VP (VB am) ?x1))
+  rhs: (S (NP ?x0) (VP (VB habe) ?x1))
+  newstates: 
+  - [[0, 0], lookup]
+  - [[1, 1], adjtonoun]
+
+## simple lookups for known phrases
+- state: lookup
+  lhs: (PRP I)
+  rhs: (PRP ich)
+
+## POS changes.
+- state: gerundtotensed
+  lhs: (VBG eating)
+  rhs: (VB esse)
+
+- state: adjtonoun
+  lhs: (JJ hungry)
+  rhs: (NN hunger)

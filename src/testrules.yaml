@@ -1,0 +1,20 @@
+- state: q
+  lhs: (A ?x0 ?x1)
+  rhs: (A (R ?x1 ?x0) (S X))
+  weight: 1.0
+- state: q
+  lhs: F
+  rhs: V
+  weight: 0.7
+- state: q
+  lhs: F
+  rhs: W
+  weight: 0.3
+- state: q
+  lhs: (S ?x0 (VP ?x1 ?x2))
+  rhs: (S ?x1 ?x0 ?x2)
+  weight: 1.0
+- state: q
+  lhs: (S ?x0 (NOTVP ?x1 ?x2))
+  rhs: (kicked ?x1 ?x1 ?x1)
+  weight: 0.5

@@ -1,0 +1,91 @@
+# handle <pronoun> like <name>
+- state: q
+  lhs: (S (NP ?x0) (VP (VB like) (NP ?x1)))
+  rhs: (S (NP ?x1) (VP (NP ?x0) (VB gusta) ?x0))
+  newstates: 
+  - [[0, 0], lookup]
+  - [[1, 0, 0], objectivize]
+  - [[1, 2], tothisperson]
+
+- state: tothisperson
+  lhs: (PRP I)
+  rhs: (PP (A a) (PRP mí))
+
+# handle usually -> soler
+- state: q
+  lhs: (S (NP ?x0) (VP (RB usually) ?x1))
+  rhs: (S (NP ?x0) (VP (VBZ suele) ?x1))
+  newstates: 
+  - [[0,0], lookup]
+  - [[1,1], unconjugate]
+
+# handle entered-object -> entró en ...
+- state: q
+  lhs: (S (NP ?x0) (VP (VBD entered) ?x1))
+  rhs: (S (NP ?x0) (VP (VBD entró) (PP (IN en) ?x1)))
+  newstates: 
+  - [[0,0], lookup]
+  - [[1,1,1], lookup]
+
+# handle broke-into X -> forzó la entrada a X
+- state: q
+  lhs: (S (NP ?x0) (VP (VBD broke) (PP (IN into) ?x1)))
+  rhs: (S (NP ?x0) (VP (VBD forzó) (NP (DT la) (NN entrada) (PP (IN a) ?x1))))
+  newstates: 
+  - [[0,0], lookup]
+  - [[1,1,2,1], lookup]
+  - [[1,1,2], al]
+
+# handle I stabbed X -> le di puńaladas a 
+- state: q
+  lhs: (S (NP ?x0) (VP (VBD stabbed) ?x1))
+  rhs: (S (NP ?x0) (VP (PRP le) (VBD di) (NP (NN puñaladas)) (NP (A a) (NNP Juan))))
+  newstates: 
+  - [[0,0], lookup]
+
+## turn English conjugated VP into Spanish infinitive
+- state: unconjugate
+  lhs: (VP (VBZ goes) ?x1)
+  rhs: (VP (VB ir) ?x1)
+  newstates:
+  - [[1], lookup]
+
+## a el -> al
+- state: al
+  lhs: (PP (IN a) (NP (DT el) ?x0))
+  rhs: (PP (IN al) (NP ?x0))
+
+## if checking for al, and there's no el, skip it. Would need also los, las.
+- state: al
+  lhs: (PP (IN a) (NP (DT la) ?x0))
+  rhs: (PP (IN a) (NP (DT la) ?x0))
+
+## simple lookups for known phrases
+- state: lookup
+  lhs: (NP (DT the) (NN house))
+  rhs: (NP (DT la) (NN casa))
+
+- state: lookup
+  lhs: (NP (DT the) (NN room))
+  rhs: (NP (DT el) (NN cuarto))
+
+- state: lookup
+  lhs: (RB home)
+  rhs: (PP (IN a) (NN casa))
+
+- state: lookup
+  lhs: (PRP I)
+  rhs: (PRP yo)
+
+- state: objectivize
+  lhs: (PRP I)
+  rhs: (PRP me)
+
+## Translate names.
+- state: lookup
+  lhs: (NNP Mary)
+  rhs: (NNP María)
+- state: lookup
+  lhs: (NNP John)
+  rhs: (NNP Juan)
+

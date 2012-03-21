@@ -1,0 +1,11 @@
+The only reason why you might want to extend the nltk trees or implement your
+own is the idea that you need to have trees where some of the nodes are in a
+current state.
+
+However, we can just keep a separate mapping from paths to nodes (which are
+themselves trees usually; they could also be terminals) and the states that
+they're in.
+
+So the function that applies a rule will take a tree and a rule and a
+mapping from positions (tree paths) to states, and it will produce a new
+tree and a new statemap.
