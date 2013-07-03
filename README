@@ -13,8 +13,8 @@ Python 2.
 
 For usage examples, please see src/spanish.py, german.py, and pokemon.py !
 
-To understand what this is all about, please see the associated quals article,
-(which I will post very soon, 21 March 2012).
+To understand what this is all about, please see the associated quals article:
+http://arxiv.org/abs/1203.6136
 
 [0] "Training Tree Transducers", Jonathan Graehl, Kevin Knight and Jonathan
 May. Computational Linguistics, 34(3), 2008.
